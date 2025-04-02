@@ -1,0 +1,7 @@
+node_modules/      # Ignore dependencies
+dist/              # Ignore build files (Vite, Webpack)
+.env               # Ignore environment variables
+.vscode/           # Ignore VS Code settings
+.DS_Store          # Ignore macOS system file
+package-lock.json  # Optional (if using Yarn, ignore yarn.lock)
+
