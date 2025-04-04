@@ -1,8 +1,9 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
+const path = require('path');
 
-app.use(express.json())
+
 
 let notes = [
     {
@@ -26,6 +27,17 @@ let notes = [
 
 //middlewares
 app.use(cors())
+
+app.use(express.json())
+
+app.use(express.static(path.join(__dirname, 'dist')));
+
+
+//endpoints
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 app.get('/', (request, response) => {
     response.send('<h1>Hello World')
