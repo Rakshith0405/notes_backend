@@ -84,6 +84,27 @@ app.post('/api/notes', (request, response) => {
   response.json(note)
 })
 
+app.put('/api/notes/:id', (request, response) => {
+  const id = request.params.id
+  const body = request.body
+
+  const noteIndex = notes.findIndex(n => n.id === id)
+
+  if (noteIndex === -1) {
+    return response.status(404).json({ error: 'note not found' })
+  }
+
+  const updatedNote = {
+    ...notes[noteIndex],
+    content: body.content,
+    important: body.important,
+  }
+
+  notes[noteIndex] = updatedNote
+  response.json(updatedNote)
+})
+
+
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
